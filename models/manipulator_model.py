@@ -7,7 +7,7 @@ def almost_equal(a, b, tol=1e-5):
 
 
 class ManiuplatorModel:
-    def __init__(self, Tp):
+    def __init__(self, Tp, m3: float = 10, r3: float = 0.05):
         self.Tp = Tp
 
         self.m1 = 3
@@ -30,8 +30,8 @@ class ManiuplatorModel:
             self.I_2, _expected_I_2
         ), f"Expected I_2 to be approximately {_expected_I_2} but got {self.I_2}"
 
-        self.m3 = 10
-        self.r3 = 0.05
+        self.m3 = m3
+        self.r3 = r3
         self.I_3 = 2.0 / 5 * self.m3 * self.r3**2
         _expected_I_3 = 0.01000
         assert almost_equal(
