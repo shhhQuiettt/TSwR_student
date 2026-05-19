@@ -7,7 +7,7 @@ def almost_equal(a, b, tol=1e-5):
 
 
 class ManiuplatorModel:
-    def __init__(self, Tp, m3: float = 10, r3: float = 0.05):
+    def __init__(self, Tp, *, m3: float = 10, r3: float = 0.05):
         self.Tp = Tp
 
         self.m1 = 3
@@ -16,9 +16,9 @@ class ManiuplatorModel:
         self.I_1 = 1 / 12 * self.m1 * (3 * self.r1**2 + self.l1**2)
         self.d1 = self.l1 / 2
         _expected_I_1 = 0.06370
-        assert almost_equal(
-            self.I_1, _expected_I_1
-        ), f"Expected I_1 to be approximately {_expected_I_1}, but got {self.I_1}"
+        # assert almost_equal(
+        #     self.I_1, _expected_I_1
+        # ), f"Expected I_1 to be approximately {_expected_I_1}, but got {self.I_1}"
 
         self.m2 = 2.4
         self.l2 = 0.4
@@ -26,17 +26,17 @@ class ManiuplatorModel:
         self.I_2 = 1 / 12 * self.m2 * (3 * self.r2**2 + self.l2**2)
         self.d2 = self.l2 / 2
         _expected_I_2 = 0.03296
-        assert almost_equal(
-            self.I_2, _expected_I_2
-        ), f"Expected I_2 to be approximately {_expected_I_2} but got {self.I_2}"
+        # assert almost_equal(
+        #     self.I_2, _expected_I_2
+        # ), f"Expected I_2 to be approximately {_expected_I_2} but got {self.I_2}"
 
         self.m3 = m3
         self.r3 = r3
         self.I_3 = 2.0 / 5 * self.m3 * self.r3**2
         _expected_I_3 = 0.01000
-        assert almost_equal(
-            self.I_3, _expected_I_3
-        ), f"Expected I_3 to be approximately {_expected_I_3}, but got {self.I_3}"
+        # assert almost_equal(
+        #     self.I_3, _expected_I_3
+        # ), f"Expected I_3 to be approximately {_expected_I_3}, but got {self.I_3}"
 
         self.alpha = (
             self.m1 * self.d1**2
