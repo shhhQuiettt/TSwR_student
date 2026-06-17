@@ -10,7 +10,6 @@ class FeedbackLinearizationController(Controller):
 
         self.model = ManiuplatorModel(Tp) if model is None else model
 
-
     def calculate_control(self, x, q_r, q_r_dot, q_r_ddot):
         """
         Please implement the feedback linearization using self.model (which you have to implement also),
@@ -22,7 +21,7 @@ class FeedbackLinearizationController(Controller):
         C = self.model.C(x)
 
         Kp = self.Kp_scalar * np.diag([1.0, 1.0])
-        Kd = self.Kd_scalar * np.diag([1.0, 1.0]) 
+        Kd = self.Kd_scalar * np.diag([1.0, 1.0])
 
         v = q_r_ddot + Kp @ (q_r - q) + Kd @ (q_r_dot - q_dot)
 

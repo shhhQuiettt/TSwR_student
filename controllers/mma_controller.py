@@ -3,10 +3,11 @@ from .controller import Controller
 from .feedback_linearization_controller import FeedbackLinearizationController
 from models.manipulator_model import ManiuplatorModel
 
+
 def calculate_next_x(model, x, u):
     q = x[:2]
     q_dot = x[2:]
-    
+
     M = model.M(x)
     C = model.C(x)
 
@@ -22,7 +23,6 @@ def calculate_next_x(model, x, u):
 
     assert next_x.shape == (4,)
     return next_x
-
 
 
 class MMAController(Controller):
@@ -49,10 +49,10 @@ class MMAController(Controller):
     def choose_model(self, x):
         if self.prev_x is None or self.prev_u is None:
             self.i = 0
-            return 
+            return
 
         best_i = 0
-        best_error = float('inf')
+        best_error = float("inf")
         for model_id, model in enumerate(self.models):
             predicted_x = calculate_next_x(model, self.prev_x, self.prev_u)
 
@@ -63,7 +63,6 @@ class MMAController(Controller):
                 best_error = error
 
         self.i = best_i
-
 
     def calculate_control(self, x, q_r, q_r_dot, q_r_ddot):
         self.choose_model(x)

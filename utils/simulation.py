@@ -8,9 +8,11 @@ from manipulators.planar_2dof_pybullet import PlanarManipulator2DOFPyBullet
 
 def simulate(mode, trajectory_generator, controller, Tp, T, multimodel=False):
     assert mode in ["PYBULLET", "SCIPY"]
-    timesteps = np.linspace(0., T, int(T / Tp))
+    timesteps = np.linspace(0.0, T, int(T / Tp))
     if mode == "PYBULLET":
-        return simulate_pybullet(trajectory_generator, controller, timesteps, multimodel)
+        return simulate_pybullet(
+            trajectory_generator, controller, timesteps, multimodel
+        )
     elif mode == "SCIPY":
         return simulate_scipy(trajectory_generator, controller, timesteps)
 
@@ -19,7 +21,7 @@ def simulate_pybullet(trajectory_generator, controller, timesteps, multimodel):
     ctrl = []
     Q = []
     Q_d = []
-    q0, qdot0, _ = trajectory_generator.generate(0.)
+    q0, qdot0, _ = trajectory_generator.generate(0.0)
     manipulator = PlanarManipulator2DOFPyBullet(timesteps[1], q0, qdot0, multimodel)
     for t in timesteps:
         x = np.array(manipulator.get_state())
@@ -55,7 +57,7 @@ def simulate_scipy(trajectory_generator, controller, timesteps):
         x_dot = manipulator.x_dot(x, control)
         return x_dot[:, 0]
 
-    q_d, q_d_dot, q_d_ddot = trajectory_generator.generate(0.)
+    q_d, q_d_dot, q_d_ddot = trajectory_generator.generate(0.0)
     x = odeint(system, np.concatenate([q_d, q_d_dot], 0), timesteps, hmax=1e-2)
     manipulator.plot(x)
     return np.array(Q), np.array(Q_d), np.array(ctrl), np.array(T)

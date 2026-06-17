@@ -11,5 +11,5 @@ class Sinusoidal(TrajectoryGenerator):
     def generate(self, t):
         q = self.A * np.sin(self.omega * t + self.fi)
         q_dot = self.A * self.omega * np.cos(self.omega * t)
-        q_ddot = - self.A * self.omega**2 * np.sin(self.omega * t)
+        q_ddot = -self.A * self.omega**2 * np.sin(self.omega * t)
         return q, q_dot, q_ddot
