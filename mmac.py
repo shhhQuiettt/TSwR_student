@@ -6,6 +6,7 @@ from scipy.integrate import odeint
 from controllers.dummy_controller import DummyController
 from controllers.feedback_linearization_controller import FeedbackLinearizationController
 from controllers.mma_controller import MMAController
+from controllers.adrc_flc_controller import ADRFLController
 from trajectory_generators.constant_torque import ConstantTorque
 from trajectory_generators.sinusonidal import Sinusoidal
 from trajectory_generators.poly3 import Poly3

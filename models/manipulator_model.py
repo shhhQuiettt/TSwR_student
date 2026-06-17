@@ -7,7 +7,7 @@ def almost_equal(a, b, tol=1e-5):
 
 
 class ManiuplatorModel:
-    def __init__(self, Tp, *, m3: float = 10, r3: float = 0.05):
+    def __init__(self, Tp, *, m3: float = 0.1, r3: float = 0.05):
         self.Tp = Tp
 
         self.m1 = 3
